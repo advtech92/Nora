@@ -67,7 +67,7 @@ def get_config():
     parser.add_argument(
         "--batch_size",
         type=int,
-        default=32,
+        default=512,
         help="Batch size per training step.",
     )
     parser.add_argument(

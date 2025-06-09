@@ -21,15 +21,25 @@ class TextDataset(Dataset):
         self.seq_length = seq_length
         self.tokenizer = tokenizer
 
-        # Read and concatenate all text files into one long string
+        # Read and concatenate all .txt files under two folders:
+        #   - data/books/
+        #   - data/conversational/
         texts = []
-        for root, _, files in os.walk(data_dir):
-            for fname in files:
-                if not fname.lower().endswith(".txt"):
-                    continue
-                path = os.path.join(root, fname)
-                with open(path, "r", encoding="utf-8", errors="ignore") as f:
-                    texts.append(f.read())
+        # If data_dir is a single path, we still look for a sibling "conversational" folder
+        conversational_dir = os.path.join(os.path.dirname(data_dir), "conversational")
+        # Gather all folders to walk
+        dirs_to_walk = [data_dir]
+        if os.path.isdir(conversational_dir):
+            dirs_to_walk.append(conversational_dir)
+
+        for d in dirs_to_walk:
+            for root, _, files in os.walk(d):
+                for fname in files:
+                    if not fname.lower().endswith(".txt"):
+                        continue
+                    path = os.path.join(root, fname)
+                    with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                        texts.append(f.read())
         full_text = "\n".join(texts)
         token_ids = self.tokenizer.encode(full_text)
 

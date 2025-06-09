@@ -196,3 +196,5 @@ cython_debug/
 checkpoints/nora_step_*.pt
 data/books
 *.json
+data/conversational/cornell_movie_dialogs.txt
+.gitignore

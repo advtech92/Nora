@@ -1,0 +1,23 @@
+# Core ML framework
+
+
+# Data loading / utilities
+tqdm>=4.64.0
+numpy>=1.22.0
+
+# HuggingFace Datasets (PersonaChat, etc.)
+datasets>=2.0.0
+
+# ConvoKit (for Cornell Movie-Dialogs + Unsloth)
+convokit>=2.0.0
+
+# Discord bot
+discord.py>=2.0.0
+
+# Web scraping
+beautifulsoup4>=4.11.0
+requests>=2.28.0
+
+# If ConvoKit pulls in TensorFlow via Unsloth
+tensorflow>=2.10.0
+
